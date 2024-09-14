@@ -43,9 +43,9 @@ const StyledButton = styled(Button)`
 
 const StyledP = styled.p`
   text-decoration: underline;
-  font-size: .9rem;
+  font-size: 0.9rem;
   cursor: pointer;
-`
+`;
 
 interface ILogin {
   email: string;
@@ -62,9 +62,9 @@ const Login: React.FC = () => {
   const [loginInfo, setLoginInfo] = useState<ILogin>(defaultLogin);
   const [messageApi, contextHolder] = message.useMessage();
 
-  const onClickNavigate = ()=>{
-    navigate("/register")
-  }
+  const onClickNavigate = () => {
+    navigate("/register");
+  };
 
   const fetchUser = useCallback(async () => {
     try {
@@ -72,9 +72,12 @@ const Login: React.FC = () => {
         method: "get",
         withCredentials: true,
       });
-      
+
       if (response.status === 200) {
-        localStorage.setItem("aes-meal-user",JSON.stringify(response?.data?.data?.userData))
+        localStorage.setItem(
+          "aes-meal-user",
+          JSON.stringify(response?.data?.data?.userData),
+        );
         navigate("/");
       }
     } catch (err) {

@@ -42,9 +42,9 @@ const StyledButton = styled(Button)`
 
 const StyledP = styled.p`
   text-decoration: underline;
-  font-size: .9rem;
+  font-size: 0.9rem;
   cursor: pointer;
-`
+`;
 
 interface IRegistration {
   email: string;
@@ -62,9 +62,8 @@ const defaultRegistration: IRegistration = {
 
 const Registration: React.FC = () => {
   const navigate = useNavigate();
-  const [registrationInfo, setRegistrationInfo] = useState<IRegistration>(
-    defaultRegistration
-  );
+  const [registrationInfo, setRegistrationInfo] =
+    useState<IRegistration>(defaultRegistration);
   const [messageApi, contextHolder] = message.useMessage();
 
   const onChangeRegistration = (key: keyof IRegistration, value: string) => {
@@ -74,15 +73,19 @@ const Registration: React.FC = () => {
     }));
   };
 
-  const onClickNavigate = ()=>{
-    navigate("/login")
-  }
+  const onClickNavigate = () => {
+    navigate("/login");
+  };
 
   const onSubmit = async () => {
     try {
-      const resp = await axiosInstance.post("/auth/register", registrationInfo, {
-        withCredentials: true,
-      });
+      const resp = await axiosInstance.post(
+        "/auth/register",
+        registrationInfo,
+        {
+          withCredentials: true,
+        },
+      );
       messageApi.open({
         type: "success",
         content: resp?.data?.message,
@@ -102,7 +105,10 @@ const Registration: React.FC = () => {
         method: "get",
         withCredentials: true,
       });
-      localStorage.setItem("aes-meal-user",JSON.stringify(response?.data?.data?.userData))
+      localStorage.setItem(
+        "aes-meal-user",
+        JSON.stringify(response?.data?.data?.userData),
+      );
 
       if (response.status === 200) {
         navigate("/");
@@ -145,11 +151,15 @@ const Registration: React.FC = () => {
           <Form.Item
             name="employeeId"
             label="Employee ID"
-            rules={[{ required: true, message: "Please input your Employee ID!" }]}
+            rules={[
+              { required: true, message: "Please input your Employee ID!" },
+            ]}
           >
             <Input
               value={registrationInfo.employeeId}
-              onChange={(e) => onChangeRegistration("employeeId", e.target.value)}
+              onChange={(e) =>
+                onChangeRegistration("employeeId", e.target.value)
+              }
             />
           </Form.Item>
           <Form.Item
@@ -168,9 +178,7 @@ const Registration: React.FC = () => {
             </StyledButton>
           </Form.Item>
         </Form>
-        <StyledP onClick={onClickNavigate}>
-          Already have an account?
-        </StyledP>
+        <StyledP onClick={onClickNavigate}>Already have an account?</StyledP>
       </StyledFormContainer>
     </MainContainer>
   );
