@@ -83,7 +83,9 @@ const PrintSignetureSheet = () => {
     },
   ];
 
-  const { toPDF, targetRef } = usePDF({ filename: "page.pdf" });
+  const { toPDF, targetRef } = usePDF({
+    filename: `aes-meal-${convertDate()}.pdf`,
+  });
   return (
     <MainContainer>
       <Button
