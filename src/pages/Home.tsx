@@ -5,6 +5,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { Button, Checkbox, Select, Table, TableColumnsType } from "antd";
 import { DataSourceItemType } from "antd/es/auto-complete/index";
+import Admin from "./Admin.tsx";
 
 const MainContainer = styled.div`
   display: flex;
