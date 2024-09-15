@@ -176,8 +176,6 @@ const Home = () => {
     );
     // setMealData(response.data.data.mealData)
 
-    console.log(response.data);
-
     const tableData = response.data.data.mealData.map((data, index) => {
       return {
         date: data.dayOfMonth + "-" + data.month + "-" + data.year,
@@ -186,11 +184,8 @@ const Home = () => {
       };
     });
 
-    console.log(tableData);
     setTable(tableData);
   };
-
-  console.log(table);
 
   const columns: TableColumnsType<DataSourceItemType> = [
     {
@@ -218,8 +213,6 @@ const Home = () => {
     );
     // setMealData(response.data.data.mealData)
 
-    console.log(response.data);
-
     const tableData = response.data.data.mealData.map((data, index) => {
       return {
         date: data.dayOfMonth + "-" + data.month + "-" + data.year,
@@ -228,7 +221,6 @@ const Home = () => {
       };
     });
 
-    console.log(tableData);
     setTable(tableData);
   };
   useEffect(() => {

@@ -44,8 +44,6 @@ const PendingWeeklyMealPlan = () => {
     );
 
     setPendingWeeklyPlans(response.data.data.pendingWeeklyPlans);
-
-    console.log(response.data.data.pendingWeeklyPlans);
   };
 
   const onClickAction = async (

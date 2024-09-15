@@ -42,7 +42,6 @@ function extractDateComponents() {
 const PrintSignetureSheet = () => {
   const [usersMealSignetures, setUsersMealSignetures] = useState([]);
   const { dayOfMonth, month, year } = extractDateComponents();
-  console.log("D", dayOfMonth);
   const fetchPending = async () => {
     const response = await axios(
       `http://localhost:8080/v1/super-user/meal-data-signeture/day/${dayOfMonth}/month/${month}/year/${year}`,
