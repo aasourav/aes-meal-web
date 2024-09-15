@@ -56,12 +56,14 @@ interface IUser {
   name: string;
   employeeId: string;
   email: string;
+  role: string;
   pendingWeeklyMealPlan: boolean[];
 }
 
 const defaultUser: IUser = {
   email: "",
   employeeId: "",
+  role: "",
   name: "",
   pendingWeeklyMealPlan: [],
 };
@@ -306,7 +308,14 @@ const Home = () => {
       <LeftContainer>
         <div>
           <h2>{userDetails.name}</h2>
-          <Button onClick={onLogout}>Logout</Button>
+          <div style={{ display: "flex", gap: "2rem" }}>
+            <Button onClick={onLogout}>Logout</Button>
+            {userDetails.role === "admin" && (
+              <Button type="primary" onClick={() => navigate("/admin")}>
+                Go to admin mode
+              </Button>
+            )}
+          </div>
         </div>
         <p>{userDetails.employeeId}</p>
         <p>{userDetails.email}</p>
