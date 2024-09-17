@@ -101,9 +101,10 @@ if (pendingWeeklyPlans){
 }
 
 const test1 = (weeklyPlan: any , index: number, pendingValue: boolean)=>{
-   if (Array.isArray(weeklyPlan) || weeklyPlan.length) return pendingValue
-    console.log("HOO: ",weeklyPlan[index], index)
-   return weeklyPlan[index]
+//    if (pendingValue === undefined || weeklyPlan[index] === undefined) return pendingValue
+   const pv = pendingValue ? "true" : "false"
+   const wv = weeklyPlan[index] ? "true" : "false"
+   return pv === wv
 }
   return (
     <MainContainer>
@@ -117,7 +118,7 @@ const test1 = (weeklyPlan: any , index: number, pendingValue: boolean)=>{
               </p>
             </div>
             <div>
-                <div style={{ display: "flex", gap:"1.2rem" }}>
+                <div style={{ display: "flex", gap:"1.625rem" }}>
                     {getCurrentWeekDatesWithMonth().length &&
                     getCurrentWeekDatesWithMonth().map((data: any, index: number) => (
                         <p style={{fontSize:".8rem"}} key={index}>
@@ -125,11 +126,11 @@ const test1 = (weeklyPlan: any , index: number, pendingValue: boolean)=>{
                         </p>
                     ))}
                 </div>
-                 <div style={{ display: "flex" }}>
+                 <div style={{ display: "flex", gap:".5rem" }}>
                     {data.pendingWeeklyMealPlan &&
                     data.pendingWeeklyMealPlan.map((data1: any, index: number) => (
-                        <Checkbox key={index} checked={data}>
-                             <span style={{color: data1 === test1(data?.weeklyMealPlan, index, data1) ? "red": "black" }}>{test1(data?.weeklyMealPlan, index, data1) ? "true": "false"}-{data1 ? "true":"false"}</span>
+                        <Checkbox key={index} checked={data1}>
+                             <span style={{color: test1(data?.weeklyMealPlan, index, data1) ? "black": "red" }}>{weekOfDay[index]}</span>
                         </Checkbox>
                     ))}
                 </div>
