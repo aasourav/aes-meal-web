@@ -332,7 +332,7 @@ const Home = () => {
         {userDetails.pendingWeeklyMealPlan &&
         userDetails.pendingWeeklyMealPlan.length > 0
           ? userDetails.pendingWeeklyMealPlan.map((data, index) => (
-              <Checkbox checked={data}>{weekOfDay[index]}</Checkbox>
+              <Checkbox key={index} checked={data}>{weekOfDay[index]}</Checkbox>
             ))
           : null}
       </LeftContainer>
