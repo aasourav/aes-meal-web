@@ -3,6 +3,34 @@ import axios from "axios";
 import { Button, Checkbox } from "antd";
 import styled from "styled-components";
 
+function getCurrentWeekDatesWithMonth() {
+    const today = new Date();
+    const currentDayOfWeek = today.getDay(); // 0 for Sunday, 1 for Monday, etc.
+    const startOfWeek = new Date(today); // Create a copy of today
+
+    // Set the startOfWeek date to the last Sunday
+    startOfWeek.setDate(today.getDate() - currentDayOfWeek);
+
+    const datesOfWeek = [];
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    // Loop through the week (7 days)
+    for (let i = 0; i < 7; i++) {
+        const date = new Date(startOfWeek);
+        date.setDate(startOfWeek.getDate() + i);
+        const day = date.getDate();
+        const month = monthNames[date.getMonth()]; // Get month name
+        datesOfWeek.push(`${day} ${month}`); // Format as '12 Sep'
+    }
+
+    return datesOfWeek;
+}
+
+// const weekDatesWithMonth = getCurrentWeekDatesWithMonth();
+// console.log(weekDatesWithMonth); // Output: ['15 Sep', '16 Sep', '17 Sep', '18 Sep', '19 Sep', '20 Sep', '21 Sep']
+
+
 const MainContainer = styled.div`
   width: 100dvh;
   height: 100dvh;
@@ -33,7 +61,7 @@ const weekOfDay = ["Sun", "Mon", "Tue", "Wed", "Thus", "Fri", "Sat"];
 
 const PendingWeeklyMealPlan = () => {
   // const [pendingWeeklyPlanRequests, setPendingWeeklyPlanRequests] =
-  const [pendingWeeklyPlans, setPendingWeeklyPlans] = useState([]);
+  const [pendingWeeklyPlans, setPendingWeeklyPlans] = useState<any[]>([]);
   const fetchPending = async () => {
     const response = await axios(
       `http://localhost:8080/v1/super-user/get-pending-weekly-meal-plan`,
@@ -67,6 +95,17 @@ const PendingWeeklyMealPlan = () => {
   useEffect(() => {
     fetchPending();
   }, []);
+
+if (pendingWeeklyPlans){
+    console.log("OHO:",pendingWeeklyPlans[0]?.weeklyMealPlan[2] === pendingWeeklyPlans[0]?.pendingWeeklyMealPlan[2])
+}
+
+const test1 = (weeklyPlan: any , index: number, pendingValue: boolean)=>{
+//    if (pendingValue === undefined || weeklyPlan[index] === undefined) return pendingValue
+   const pv = pendingValue ? "true" : "false"
+   const wv = weeklyPlan[index] ? "true" : "false"
+   return pv === wv
+}
   return (
     <MainContainer>
       {pendingWeeklyPlans ? (
@@ -78,13 +117,23 @@ const PendingWeeklyMealPlan = () => {
                 {convertDate(data.updated_at)}
               </p>
             </div>
-            <div style={{ display: "flex" }}>
-              {data.pendingWeeklyMealPlan &&
-                data.pendingWeeklyMealPlan.map((data: any, index: number) => (
-                  <Checkbox key={index} checked={data}>
-                    {weekOfDay[index]}
-                  </Checkbox>
-                ))}
+            <div>
+                <div style={{ display: "flex", gap:"1.625rem" }}>
+                    {getCurrentWeekDatesWithMonth().length &&
+                    getCurrentWeekDatesWithMonth().map((data: any, index: number) => (
+                        <p style={{fontSize:".8rem"}} key={index}>
+                        {data}
+                        </p>
+                    ))}
+                </div>
+                 <div style={{ display: "flex", gap:".5rem" }}>
+                    {data.pendingWeeklyMealPlan &&
+                    data.pendingWeeklyMealPlan.map((data1: any, index: number) => (
+                        <Checkbox key={index} checked={data1}>
+                             <span style={{color: test1(data?.weeklyMealPlan, index, data1) ? "black": "red" }}>{weekOfDay[index]}</span>
+                        </Checkbox>
+                    ))}
+                </div>
             </div>
             <div style={{ display: "flex", gap: ".5rem" }}>
               <Button
