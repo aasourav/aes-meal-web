@@ -59,7 +59,7 @@ const PendingWeeklyMealPlan = () => {
         },
       );
       fetchPending();
-    } catch (err) {
+    } catch (err: any) {
       console.log(err?.message);
     }
   };
@@ -70,7 +70,7 @@ const PendingWeeklyMealPlan = () => {
   return (
     <MainContainer>
       {pendingWeeklyPlans ? (
-        pendingWeeklyPlans.map((data) => (
+        pendingWeeklyPlans.map((data: any) => (
           <Card key={data._id}>
             <div style={{ display: "flex", alignItems: "center", gap: "3rem" }}>
               <p style={{ fontSize: "1rem" }}>{data.name}</p>
@@ -80,7 +80,7 @@ const PendingWeeklyMealPlan = () => {
             </div>
             <div style={{ display: "flex" }}>
               {data.pendingWeeklyMealPlan &&
-                data.pendingWeeklyMealPlan.map((data, index) => (
+                data.pendingWeeklyMealPlan.map((data: any, index: number) => (
                   <Checkbox key={index} checked={data}>
                     {weekOfDay[index]}
                   </Checkbox>

@@ -52,7 +52,7 @@ const PrintSignetureSheet = () => {
     );
 
     const tempUser = response.data.data.userWithMealDoc
-      ? response.data.data.userWithMealDoc.filter((data) => {
+      ? response.data.data.userWithMealDoc.filter((data: any) => {
           if (data?.mealsConsumed[0].numberOfMeal === 0) {
             return false;
           }
@@ -107,13 +107,13 @@ const PrintSignetureSheet = () => {
           pagination={false}
           components={{
             header: {
-              cell: ({ children }) => (
-                <th style={{ border: "1px solid black" }}>{children}</th>
+              cell: (data: any) => (
+                <th style={{ border: "1px solid black" }}>{data?.children}</th>
               ),
             },
             body: {
-              cell: ({ children }) => (
-                <td style={{ border: "1px solid black" }}>{children}</td>
+              cell: (data: any) => (
+                <td style={{ border: "1px solid black" }}>{data?.children}</td>
               ),
             },
           }}

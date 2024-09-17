@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../utils/axiosInstance.ts";
 import axios from "axios";
 import styled from "styled-components";
 import { Button, Checkbox, Select, Table, TableColumnsType } from "antd";
 import { DataSourceItemType } from "antd/es/auto-complete/index";
-import Admin from "./Admin.tsx";
 
 const MainContainer = styled.div`
   display: flex;
@@ -38,20 +36,7 @@ const RightContainer = styled.div`
     padding: 10px;
   }
 `;
-const month = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+
 interface IUser {
   name: string;
   employeeId: string;
@@ -275,7 +260,7 @@ const Home = () => {
 
       setIsUpdate(false);
     } catch (er) {
-      console.log(er?.message);
+      console.log(er);
     }
   };
   useEffect(() => {
@@ -299,7 +284,7 @@ const Home = () => {
         pendingWeeklyMealPlan: [],
       }));
     } catch (er) {
-      console.log(er?.message);
+      console.log(er);
     }
   };
 
