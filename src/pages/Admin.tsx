@@ -7,6 +7,7 @@ import styled from "styled-components";
 import PendingWeeklyMealPlan from "./PendingWeeklyPlan.tsx";
 // import EditUsersMealData from "./EditUsersMealData.tsx";
 import PrintSignetureSheet from "./PrintSignetureSheet.tsx";
+import UsersMonlyMealCount from "./UsersMonlyMealCount.tsx";
 
 const MainContainer = styled.div`
   width: 100dvh;
@@ -19,7 +20,8 @@ const MainContainer = styled.div`
 type Align =
   | "Pending weekly meal plan"
   // | "Edit users meal data"
-  | "Print Signeture Sheet";
+  | "Print Signeture Sheet"
+  | "Users Monly Meal Count";
 
 const Admin = () => {
   const [alignValue, setAlignValue] = useState<Align>(
@@ -65,15 +67,16 @@ const Admin = () => {
         options={[
           "Pending weekly meal plan",
           // "Edit users meal data",
+          "Users Monly Meal Count",
           "Print Signeture Sheet",
         ]}
       />
       {alignValue === "Pending weekly meal plan" ? (
         <PendingWeeklyMealPlan />
-      ) : // ) : alignValue === "Edit users meal data" ? (
-      //   <EditUsersMealData />
-      alignValue === "Print Signeture Sheet" ? (
+      ) : alignValue === "Print Signeture Sheet" ? (
         <PrintSignetureSheet />
+      ) : alignValue === "Users Monly Meal Count" ? (
+        <UsersMonlyMealCount />
       ) : null}
     </MainContainer>
   );
