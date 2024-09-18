@@ -14,8 +14,8 @@ RUN npm install
 COPY . .
 
 # Set build arguments
-ARG VITE_BASE_URL
-ENV VITE_BASE_URL=$VITE_BASE_URL
+
+ENV VITE_BASE_URL="http://localhost:8080"
 
 # Build the project for production
 RUN npm run build
