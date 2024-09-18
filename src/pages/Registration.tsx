@@ -101,7 +101,7 @@ const Registration: React.FC = () => {
 
   const fetchUser = useCallback(async () => {
     try {
-      const response = await axios("http://localhost:8080/v1/auth/user", {
+      const response = await axios(`${import.meta.env.VITE_BASE_URL}/v1/auth/user`, {
         method: "get",
         withCredentials: true,
       });
