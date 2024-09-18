@@ -57,13 +57,13 @@ const PrintSignetureSheet = () => {
             return false;
           }
           return {
-            name: data.name + "-" + data.employeeId,
+            name: data.name,
             signeture: "",
             key: data._id,
           };
         })
       : [];
-    setUsersMealSignetures(tempUser);
+    setUsersMealSignetures(tempUser || []);
   };
 
   useEffect(() => {
