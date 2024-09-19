@@ -77,7 +77,7 @@ const Home = () => {
   const [userDetails, setUserDetails] = useState<IUser>(defaultUser);
   const onLogout = async () => {
     try {
-      const response = await axios("http://localhost:8080/v1/auth/logout", {
+      const response = await axios(`${import.meta.env.VITE_BASE_URL}/v1/auth/logout`, {
         method: "get",
         withCredentials: true,
       });
@@ -94,7 +94,7 @@ const Home = () => {
 
   const fetchUser = useCallback(async () => {
     try {
-      const response = await axios("http://localhost:8080/v1/auth/user", {
+      const response = await axios(`${import.meta.env.VITE_BASE_URL}/v1/auth/user`, {
         method: "get",
         withCredentials: true,
       });
@@ -154,7 +154,7 @@ const Home = () => {
         mealData: IMealRecord[];
       };
     }>(
-      `http://localhost:8080/v1/user/user-meal-data/month/${month}/year/${year}`,
+      `${import.meta.env.VITE_BASE_URL}/v1/user/user-meal-data/month/${month}/year/${year}`,
       {
         method: "get",
         withCredentials: true,
@@ -195,7 +195,7 @@ const Home = () => {
         mealData: IMealRecord[];
       };
     }>(
-      `http://localhost:8080/v1/user/user-meal-data/month/${mealHistory.month}/year/${mealHistory.year}`,
+      `${import.meta.env.VITE_BASE_URL}/v1/user/user-meal-data/month/${mealHistory.month}/year/${mealHistory.year}`,
       {
         method: "get",
         withCredentials: true,
@@ -241,7 +241,7 @@ const Home = () => {
   const onWeeklyUpdateChange = async () => {
     try {
       const response = await axios(
-        `http://localhost:8080/v1/user/update-weekly-meal-plan`,
+        `${import.meta.env.VITE_BASE_URL}/v1/user/update-weekly-meal-plan`,
         {
           method: "put",
           data: {
@@ -271,7 +271,7 @@ const Home = () => {
   const onClickPendingWeeklyPlan = async () => {
     try {
       const response = await axios(
-        `http://localhost:8080/v1/user/clean-pending-meal`,
+        `${import.meta.env.VITE_BASE_URL}/v1/user/clean-pending-meal`,
         {
           method: "delete",
           withCredentials: true,
@@ -288,7 +288,6 @@ const Home = () => {
     }
   };
 
-  // console.log(weeklyPlan)
   return (
     <MainContainer>
       <LeftContainer>

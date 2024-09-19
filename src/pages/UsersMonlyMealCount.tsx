@@ -32,7 +32,7 @@ const UsersMonlyMealCount = () => {
 
   const fetchPending = async () => {
     const response = await axios(
-      `http://localhost:8080/v1/super-user/users-total-meal/month/${paramsWithQueryParams.month}/year/${paramsWithQueryParams.year}?employeeQuery=${paramsWithQueryParams.queryParams}`,
+      `${import.meta.env.VITE_BASE_URL}/v1/super-user/users-total-meal/month/${paramsWithQueryParams.month}/year/${paramsWithQueryParams.year}?employeeQuery=${paramsWithQueryParams.queryParams}`,
       {
         method: "get",
         withCredentials: true,

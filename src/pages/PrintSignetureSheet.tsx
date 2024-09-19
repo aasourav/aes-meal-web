@@ -44,7 +44,7 @@ const PrintSignetureSheet = () => {
   const { dayOfMonth, month, year } = extractDateComponents();
   const fetchPending = async () => {
     const response = await axios(
-      `http://localhost:8080/v1/super-user/meal-data-signeture/day/${dayOfMonth}/month/${month}/year/${year}`,
+      `${import.meta.env.VITE_BASE_URL}/v1/super-user/meal-data-signeture/day/${dayOfMonth}/month/${month}/year/${year}`,
       {
         method: "get",
         withCredentials: true,

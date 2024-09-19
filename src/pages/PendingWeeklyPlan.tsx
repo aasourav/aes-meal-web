@@ -75,7 +75,7 @@ const PendingWeeklyMealPlan = () => {
   const [pendingWeeklyPlans, setPendingWeeklyPlans] = useState<any[]>([]);
   const fetchPending = async () => {
     const response = await axios(
-      `http://localhost:8080/v1/super-user/get-pending-weekly-meal-plan`,
+      `${import.meta.env.VITE_BASE_URL}/v1/super-user/get-pending-weekly-meal-plan`,
       {
         method: "get",
         withCredentials: true,
@@ -91,7 +91,7 @@ const PendingWeeklyMealPlan = () => {
   ) => {
     try {
       await axios(
-        `http://localhost:8080/v1/super-user/action-pending-weekly-meal-plan/action/${actionType}/user/${userId}`,
+        `${import.meta.env.VITE_BASE_URL}/v1/super-user/action-pending-weekly-meal-plan/action/${actionType}/user/${userId}`,
         {
           method: "put",
           withCredentials: true,

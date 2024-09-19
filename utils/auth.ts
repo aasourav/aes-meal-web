@@ -11,3 +11,6 @@ export const getUserRole = (): string | undefined => {
   const role = Cookies.get("userRole"); // Assuming 'userRole' is stored
   return role;
 };
+
+// export const BACKEND_URL = import.meta.env.BASE_URL
+// console.log(BACKEND_URL)
